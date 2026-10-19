@@ -1,0 +1,22 @@
+# Intro
+Copycat is a sound analyser. Play a sound through it and it estimates the note, key, chord, tempo, oscillator shape, voice count and detune, filter cutoff and slope, the envelope, and gives some EQ ideas, so you can rebuild the sound in your own synth.
+
+# Quick start
+- Put Copycat on a track that plays the sound you want to study (or open the standalone app and feed it audio).
+- Play the sound, then press Capture and analyse the last 2 seconds. The result appears as text in the window.
+- The button turns green while sound is arriving. The audio passes through unchanged.
+- Note: this version has a plain text window. The designed window (spectrogram, envelope and EQ views, Rebuild synth) is in the mockup in the repository and is not built yet.
+
+# What it reports
+- Note and key, chord, and tempo of the captured sound.
+- Envelope: attack, decay, sustain, release.
+- Spectrum based estimates: filter cutoff and slope, oscillator shape guess, number of voices and detune.
+- EQ suggestions.
+
+# Limits
+- These are estimates. The cutoff is only accurate within about a factor of 2, and detune is rough. It works best on a single clean sound, not on a full mix.
+
+# Recommendations
+- Analyse one note or one chord at a time, with no reverb and no other instruments.
+- Use the result as a starting point and match it by ear in your synth.
+- Not tried on many real recordings yet: please report wrong results on GitHub.
