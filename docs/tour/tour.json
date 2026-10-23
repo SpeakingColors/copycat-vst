@@ -1,0 +1,1300 @@
+{
+ "title": "Copycat",
+ "page": "docs/mockup/copycat.html",
+ "tabs": [
+  {
+   "label": "SOUND",
+   "img": "window_1.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": true
+    },
+    {
+     "n": 9,
+     "name": "Source",
+     "tip": "What the plugin hears. In a DAW this is the track you put Copycat on. Your file uses the file you loaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 10,
+     "name": "Listen",
+     "tip": "Play the source on a loop, like a track in your DAW. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 11,
+     "name": "Capture 2 s",
+     "tip": "Grab 2 seconds of what is playing now and analyze it. Shortcut: C.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 12,
+     "name": "Auto capture",
+     "tip": "While listening, grab a new 2 second window every time the loop turns. Off keeps the picture frozen.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 13,
+     "name": "Load file",
+     "tip": "Load your own audio file (wav, mp3, flac, ogg). It stays in this browser tab and is never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 14,
+     "name": "Sound",
+     "tip": "Spectrogram of the captured sound: time to the right, frequency up. Hover to read a note. Shortcut: 1.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 15,
+     "name": "Synth guess",
+     "tip": "Harmonics of the sound against a saw, square and triangle. The closest one is the guess. Shortcut: 2.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 16,
+     "name": "Envelope & filter",
+     "tip": "Amp envelope with draggable points, and the filter curve. Shortcut: 3.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 17,
+     "name": "EQ curve",
+     "tip": "Average spectrum of the sound and an EQ you can draw to match it. Shortcut: 4.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 18,
+     "name": "Recipes",
+     "tip": "Written recipes to rebuild the sound in a synth. Shortcut: 5.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 19,
+     "name": "Original",
+     "tip": "Play the captured sound once.",
+     "kind": "button",
+     "sec": "Musicalestimates",
+     "fresh": true
+    },
+    {
+     "n": 20,
+     "name": "Copy",
+     "tip": "Play the rebuilt copy once: the recipe on the Synth guess and Envelope tabs, played by the built-in synth.",
+     "kind": "button",
+     "sec": "Musicalestimates",
+     "fresh": true
+    },
+    {
+     "n": 21,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  },
+  {
+   "label": "SYNTH GUESS",
+   "img": "window_2.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 9,
+     "name": "Source",
+     "tip": "What the plugin hears. In a DAW this is the track you put Copycat on. Your file uses the file you loaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 10,
+     "name": "Listen",
+     "tip": "Play the source on a loop, like a track in your DAW. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 11,
+     "name": "Capture 2 s",
+     "tip": "Grab 2 seconds of what is playing now and analyze it. Shortcut: C.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 12,
+     "name": "Auto capture",
+     "tip": "While listening, grab a new 2 second window every time the loop turns. Off keeps the picture frozen.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 13,
+     "name": "Load file",
+     "tip": "Load your own audio file (wav, mp3, flac, ogg). It stays in this browser tab and is never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 14,
+     "name": "Sound",
+     "tip": "Spectrogram of the captured sound: time to the right, frequency up. Hover to read a note. Shortcut: 1.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 15,
+     "name": "Synth guess",
+     "tip": "Harmonics of the sound against a saw, square and triangle. The closest one is the guess. Shortcut: 2.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 16,
+     "name": "Envelope & filter",
+     "tip": "Amp envelope with draggable points, and the filter curve. Shortcut: 3.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 17,
+     "name": "EQ curve",
+     "tip": "Average spectrum of the sound and an EQ you can draw to match it. Shortcut: 4.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 18,
+     "name": "Recipes",
+     "tip": "Written recipes to rebuild the sound in a synth. Shortcut: 5.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 23,
+     "name": "Wave",
+     "tip": "Wave of the rebuilt copy.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 24,
+     "name": "Voices",
+     "tip": "How many detuned copies of the wave. The estimate comes from how wide the fundamental is. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 25,
+     "name": "Detune",
+     "tip": "Spread of the voices in cents. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 19,
+     "name": "Original",
+     "tip": "Play the captured sound once.",
+     "kind": "button",
+     "sec": "Musicalestimates",
+     "fresh": false
+    },
+    {
+     "n": 20,
+     "name": "Copy",
+     "tip": "Play the rebuilt copy once: the recipe on the Synth guess and Envelope tabs, played by the built-in synth.",
+     "kind": "button",
+     "sec": "Musicalestimates",
+     "fresh": false
+    },
+    {
+     "n": 21,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  },
+  {
+   "label": "ENVELOPE & FILTER",
+   "img": "window_3.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 9,
+     "name": "Source",
+     "tip": "What the plugin hears. In a DAW this is the track you put Copycat on. Your file uses the file you loaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 10,
+     "name": "Listen",
+     "tip": "Play the source on a loop, like a track in your DAW. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 11,
+     "name": "Capture 2 s",
+     "tip": "Grab 2 seconds of what is playing now and analyze it. Shortcut: C.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 12,
+     "name": "Auto capture",
+     "tip": "While listening, grab a new 2 second window every time the loop turns. Off keeps the picture frozen.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 13,
+     "name": "Load file",
+     "tip": "Load your own audio file (wav, mp3, flac, ogg). It stays in this browser tab and is never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 14,
+     "name": "Sound",
+     "tip": "Spectrogram of the captured sound: time to the right, frequency up. Hover to read a note. Shortcut: 1.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 15,
+     "name": "Synth guess",
+     "tip": "Harmonics of the sound against a saw, square and triangle. The closest one is the guess. Shortcut: 2.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 16,
+     "name": "Envelope & filter",
+     "tip": "Amp envelope with draggable points, and the filter curve. Shortcut: 3.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 17,
+     "name": "EQ curve",
+     "tip": "Average spectrum of the sound and an EQ you can draw to match it. Shortcut: 4.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 18,
+     "name": "Recipes",
+     "tip": "Written recipes to rebuild the sound in a synth. Shortcut: 5.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 26,
+     "name": "Attack",
+     "tip": "Attack of the copy. Also draggable on the Envelope display. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 27,
+     "name": "Decay",
+     "tip": "Decay of the copy. Also draggable on the Envelope display. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 28,
+     "name": "Sustain",
+     "tip": "Sustain of the copy. Also draggable on the Envelope display. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 29,
+     "name": "Release",
+     "tip": "Release of the copy. Also draggable on the Envelope display. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 30,
+     "name": "Cutoff",
+     "tip": "Low-pass cutoff of the copy. Also draggable on the filter curve. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 31,
+     "name": "Resonance",
+     "tip": "Filter resonance. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 32,
+     "name": "Filter env",
+     "tip": "How far the envelope opens the filter above its cutoff. Double-click resets.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 33,
+     "name": "Slope",
+     "tip": "Filter slope.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 19,
+     "name": "Original",
+     "tip": "Play the captured sound once.",
+     "kind": "button",
+     "sec": "Musicalestimates",
+     "fresh": false
+    },
+    {
+     "n": 20,
+     "name": "Copy",
+     "tip": "Play the rebuilt copy once: the recipe on the Synth guess and Envelope tabs, played by the built-in synth.",
+     "kind": "button",
+     "sec": "Musicalestimates",
+     "fresh": false
+    },
+    {
+     "n": 21,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  },
+  {
+   "label": "EQ CURVE",
+   "img": "window_4.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 9,
+     "name": "Source",
+     "tip": "What the plugin hears. In a DAW this is the track you put Copycat on. Your file uses the file you loaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 10,
+     "name": "Listen",
+     "tip": "Play the source on a loop, like a track in your DAW. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 11,
+     "name": "Capture 2 s",
+     "tip": "Grab 2 seconds of what is playing now and analyze it. Shortcut: C.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 12,
+     "name": "Auto capture",
+     "tip": "While listening, grab a new 2 second window every time the loop turns. Off keeps the picture frozen.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 13,
+     "name": "Load file",
+     "tip": "Load your own audio file (wav, mp3, flac, ogg). It stays in this browser tab and is never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 14,
+     "name": "Sound",
+     "tip": "Spectrogram of the captured sound: time to the right, frequency up. Hover to read a note. Shortcut: 1.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 15,
+     "name": "Synth guess",
+     "tip": "Harmonics of the sound against a saw, square and triangle. The closest one is the guess. Shortcut: 2.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 16,
+     "name": "Envelope & filter",
+     "tip": "Amp envelope with draggable points, and the filter curve. Shortcut: 3.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 17,
+     "name": "EQ curve",
+     "tip": "Average spectrum of the sound and an EQ you can draw to match it. Shortcut: 4.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 18,
+     "name": "Recipes",
+     "tip": "Written recipes to rebuild the sound in a synth. Shortcut: 5.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 34,
+     "name": "Apply suggestion",
+     "tip": "Move your four EQ points to the biggest differences Copycat found.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 35,
+     "name": "Reset EQ",
+     "tip": "Flatten your four EQ points.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": true
+    },
+    {
+     "n": 19,
+     "name": "Original",
+     "tip": "Play the captured sound once.",
+     "kind": "button",
+     "sec": "Musicalestimates",
+     "fresh": false
+    },
+    {
+     "n": 20,
+     "name": "Copy",
+     "tip": "Play the rebuilt copy once: the recipe on the Synth guess and Envelope tabs, played by the built-in synth.",
+     "kind": "button",
+     "sec": "Musicalestimates",
+     "fresh": false
+    },
+    {
+     "n": 21,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  },
+  {
+   "label": "RECIPES",
+   "img": "window_5.png",
+   "items": [
+    {
+     "n": 1,
+     "name": "Previous preset",
+     "tip": "Previous preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 2,
+     "name": "Init",
+     "tip": "Open the preset list: factory presets and your own.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 3,
+     "name": "Next preset",
+     "tip": "Next preset.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 4,
+     "name": "Save",
+     "tip": "Save the current settings as your own preset (stays on this device).",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 5,
+     "name": "Delete, export or import your presets",
+     "tip": "Delete, export or import your presets.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 6,
+     "name": "Guide",
+     "tip": "Quick guide: what each part does.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 7,
+     "name": "Settings",
+     "tip": "Info bubbles and eco mode.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 8,
+     "name": "About & Support",
+     "tip": "About Studio 87, privacy, and ways to support the project.",
+     "kind": "button",
+     "sec": "Header bar",
+     "fresh": false
+    },
+    {
+     "n": 9,
+     "name": "Source",
+     "tip": "What the plugin hears. In a DAW this is the track you put Copycat on. Your file uses the file you loaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 10,
+     "name": "Listen",
+     "tip": "Play the source on a loop, like a track in your DAW. Shortcut: Space.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 11,
+     "name": "Capture 2 s",
+     "tip": "Grab 2 seconds of what is playing now and analyze it. Shortcut: C.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 12,
+     "name": "Auto capture",
+     "tip": "While listening, grab a new 2 second window every time the loop turns. Off keeps the picture frozen.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 13,
+     "name": "Load file",
+     "tip": "Load your own audio file (wav, mp3, flac, ogg). It stays in this browser tab and is never uploaded.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 14,
+     "name": "Sound",
+     "tip": "Spectrogram of the captured sound: time to the right, frequency up. Hover to read a note. Shortcut: 1.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 15,
+     "name": "Synth guess",
+     "tip": "Harmonics of the sound against a saw, square and triangle. The closest one is the guess. Shortcut: 2.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 16,
+     "name": "Envelope & filter",
+     "tip": "Amp envelope with draggable points, and the filter curve. Shortcut: 3.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 17,
+     "name": "EQ curve",
+     "tip": "Average spectrum of the sound and an EQ you can draw to match it. Shortcut: 4.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 18,
+     "name": "Recipes",
+     "tip": "Written recipes to rebuild the sound in a synth. Shortcut: 5.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 19,
+     "name": "Original",
+     "tip": "Play the captured sound once.",
+     "kind": "button",
+     "sec": "Musicalestimates",
+     "fresh": false
+    },
+    {
+     "n": 20,
+     "name": "Copy",
+     "tip": "Play the rebuilt copy once: the recipe on the Synth guess and Envelope tabs, played by the built-in synth.",
+     "kind": "button",
+     "sec": "Musicalestimates",
+     "fresh": false
+    },
+    {
+     "n": 21,
+     "name": "Window 100 %",
+     "tip": "Window size. Drag any edge or corner of the plugin to resize it; the shape stays the same. Double-click here for 100 %.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    },
+    {
+     "n": 22,
+     "name": "Resize",
+     "tip": "Drag to resize the window. Every edge and corner works, and the shape stays the same.",
+     "kind": "button",
+     "sec": "Window",
+     "fresh": false
+    }
+   ]
+  }
+ ]
+}
