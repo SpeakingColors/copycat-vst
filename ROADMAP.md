@@ -4,6 +4,7 @@ Sound analyser.
 
 ## Done
 - [x] Analysis engine in pure C++ with unit tests (pitch, key, chord, tempo, envelope, oscillator, voices, filter, EQ ideas)
+- [x] Release packaging: installers (Windows, macOS, Linux Flatpak extension), uninstallers and PDF manual built by the release workflow (test builds, not tested on real machines)
 - [x] JUCE plugin shell with Capture button and text readout, CI (core tests, configure, build)
 
 ## Next
