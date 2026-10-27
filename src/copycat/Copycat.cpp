@@ -1,4 +1,5 @@
 #include "Copycat.h"
+#include <juce_audio_formats/juce_audio_formats.h>
 
 CopycatProcessor::CopycatProcessor()
     : AudioProcessor(BusesProperties().withInput("Input", juce::AudioChannelSet::stereo(), true).withOutput("Output", juce::AudioChannelSet::stereo(), true)) {}
