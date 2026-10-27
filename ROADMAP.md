@@ -10,7 +10,8 @@ Sound analyser.
 ## Next
 - [ ] Try the analysis on real recordings and tighten it (cutoff and detune are rough)
 - [ ] The Rebuild synth in C++ (the mockup has one in JavaScript) so the plugin can play the copy
-- [ ] cat-ui editor from the mockup (Sound, Synth, Envelope, EQ and Record views) drawn through `catui::RenderGate`
+- [x] cat-ui editor from the mockup (Sound, Synth guess, Envelope and filter, EQ curve and Recipes views) drawn through `catui::RenderGate`; Rebuild, presets and settings still to do
+- [ ] Fix the analysis gaps seen on the synthetic test sound: filter cutoff (4x too low), tempo from clear hits, EQ ideas
 - [ ] Presets and state backup folders
 
 ## Every cat plugin

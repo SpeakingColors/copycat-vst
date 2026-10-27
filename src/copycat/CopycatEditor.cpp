@@ -70,14 +70,14 @@ public:
         auto a = specArea(); auto p = e.getPosition();
         if (!a.contains(p)) { onHint("Hover the spectrogram to read a frequency and a note."); return; }
         const double hz = yToHz(p.y, a), t = (double) (p.x - a.getX()) / a.getWidth() * (double) cap.audio.size() / cap.fs;
-        onHint(String(hz, 0) + " Hz  " + noteOf(hz) + "   at " + String(t, 2) + " s");
+        onHint(String(juce::roundToInt(hz)) + " Hz  " + noteOf(hz) + "   at " + String(t, 2) + " s");
     }
 
 private:
     CopycatProcessor::Capture cap; bool hasData = false; Mode mode = Sound; juce::Image spec;
     static constexpr double fMin = 30.0;
     double fMax() const { return std::min(12000.0, cap.fs * 0.5); }
-    Rectangle<int> specArea() const { return getLocalBounds().withTrimmedLeft(52).withTrimmedBottom(26).withTrimmedTop(18).withTrimmedRight(14); }
+    Rectangle<int> specArea() const { return getLocalBounds().withTrimmedLeft(52).withTrimmedBottom(26).withTrimmedTop(18).withTrimmedRight(26); }
     double yToHz(int y, Rectangle<int> a) const { const double t = 1.0 - (double) (y - a.getY()) / a.getHeight(); return fMin * std::pow(fMax() / fMin, juce::jlimit(0.0, 1.0, t)); }
     float hzToY(double hz, Rectangle<int> a) const { return (float) a.getBottom() - (float) (std::log(hz / fMin) / std::log(fMax() / fMin)) * (float) a.getHeight(); }
 
@@ -121,7 +121,7 @@ private:
         {
             if (f > fMax()) continue; const float y = hzToY(f, a);
             g.setColour(juce::Colours::white.withAlpha(0.07f)); g.drawHorizontalLine((int) y, (float) a.getX(), (float) a.getRight());
-            axisText(g, f >= 1000 ? String((int) (f / 1000)) + "k" : String((int) f), (float) a.getX() - 22, y, juce::Justification::centredRight);
+            axisText(g, f >= 1000 ? String((int) (f / 1000)) + "k" : String((int) f), (float) a.getX() - 46, y, juce::Justification::centredRight);
         }
         const double dur = (double) cap.audio.size() / cap.fs;
         for (int i = 0; i <= 4; ++i) axisText(g, String(dur * i / 4, 1) + " s", (float) a.getX() + (float) a.getWidth() * (float) i / 4.f, (float) a.getBottom() + 14.f, juce::Justification::centred);
@@ -158,7 +158,7 @@ private:
         juce::Path p; p.startNewSubPath(X(0), Y(0)); p.lineTo(X(e.attack), Y(1)); p.lineTo(X(e.attack + e.decay), Y(e.sustain)); p.lineTo(X(e.attack + e.decay + 0.35), Y(e.sustain)); p.lineTo(X(total), Y(0));
         g.setColour(kPink.withAlpha(0.18f)); juce::Path f(p); f.closeSubPath(); g.fillPath(f); g.setColour(kPink); g.strokePath(p, juce::PathStrokeType(2.5f));
         g.setColour(kText); g.setFont(mono(13.f));
-        g.drawText("A " + String(e.attack * 1000, 0) + " ms    D " + String(e.decay * 1000, 0) + " ms    S " + String(e.sustain * 100, 0) + " %    R " + String(e.release * 1000, 0) + " ms", a.removeFromTop(24), juce::Justification::left);
+        g.drawText("A " + String(juce::roundToInt(e.attack * 1000)) + " ms    D " + String(juce::roundToInt(e.decay * 1000)) + " ms    S " + String(juce::roundToInt(e.sustain * 100)) + " %    R " + String(juce::roundToInt(e.release * 1000)) + " ms", a.removeFromTop(24), juce::Justification::left);
         a.removeFromTop(10); g.setColour(kDim); g.setFont(sans(13.f, true)); g.drawText("FILTER: LONG TERM SPECTRUM AND CUTOFF ESTIMATE", a.removeFromTop(20), juce::Justification::left);
         paintSpectrum(g, a.removeFromTop(220), true, false);
         g.setColour(kText); g.setFont(mono(13.f)); g.drawText("Low pass about " + String((int) cap.r.cutoffHz) + " Hz, " + String(cap.r.slope) + " dB/oct (rough estimate)", a.removeFromTop(24), juce::Justification::left);
@@ -203,7 +203,7 @@ private:
         const String t = "1. Oscillator: " + String(copycat::waveName(r.wave)) + ", " + String(r.voices) + " voice(s)" + (r.voices > 1 ? ", detune about " + String(r.detuneCents, 1) + " cents" : "") + ".\n"
             "2. Pitch: " + String(r.noteName_) + " (" + String(r.f0, 1) + " Hz). Key looks like " + String(r.key) + (r.hasChord ? ", chord " + String(r.chord.name) : "") + ".\n"
             "3. Filter: low pass near " + String((int) r.cutoffHz) + " Hz, " + String(r.slope) + " dB per octave.\n"
-            "4. Amp envelope: attack " + String(r.env.attack * 1000, 0) + " ms, decay " + String(r.env.decay * 1000, 0) + " ms, sustain " + String(r.env.sustain * 100, 0) + " %, release " + String(r.env.release * 1000, 0) + " ms.\n"
+            "4. Amp envelope: attack " + String(juce::roundToInt(r.env.attack * 1000)) + " ms, decay " + String(juce::roundToInt(r.env.decay * 1000)) + " ms, sustain " + String(juce::roundToInt(r.env.sustain * 100)) + " %, release " + String(juce::roundToInt(r.env.release * 1000)) + " ms.\n"
             "5. Tempo: " + (r.bpm > 0 ? String(r.bpm, 1) + " BPM" : String("not enough hits to tell")) + ".\n"
             "6. EQ ideas: " + (r.eq.empty() ? String("none") : [&] { String s; for (auto& b : r.eq) s << String((int) b.freq) << " Hz " << (b.gainDb >= 0 ? "+" : "") << String(b.gainDb, 1) << " dB   "; return s; }()) + "\n\n"
             "Every number is an estimate. Check it by ear against the original.";
@@ -275,7 +275,7 @@ private:
     {
         guide.setBounds(900, 20, 90, 34); about.setBounds(1000, 20, 130, 34);
         listen.setBounds(268, 112, 100, 36); capture.setBounds(376, 112, 130, 36); autoCap.setBounds(514, 112, 140, 36); load.setBounds(662, 112, 110, 36);
-        statusArea = { 790, 112, 340, 36 };
+        statusArea = { 790, 112, 322, 36 };
         const int tw = 214; for (int i = 0; i < 5; ++i) tabs[i]->setBounds(14 + i * (tw + 6), 162, tw, 38);
         view.setBounds(14, 210, 810, 500); estArea = { 836, 210, 292, 500 };
         orig.setBounds(848, 520, 120, 34); copy.setBounds(976, 520, 100, 34); meter.setBounds(848, 590, 268, 110);
@@ -333,9 +333,9 @@ private:
             row(g, y, "CHORD NOW", r.hasChord ? String(r.chord.name) : String("-"), r.hasChord ? String(r.chord.notes.empty() ? "" : r.chord.notes.front()) : String()); y += 42;
             row(g, y, "ROOT NOTE", String(r.noteName_), String(r.f0, 1) + " Hz . " + String(r.cents) + " cents"); y += 42;
             row(g, y, "TEMPO", r.bpm > 0 ? String(juce::roundToInt(r.bpm)) : String("-"), r.bpm > 0 ? "from " + String(r.onsets) + " onsets" : String("not enough hits"));
-            g.setColour(kDim); g.setFont(sans(13.f, true)); g.drawText("INSTANT COPY", estArea.getX() + 12, 400, 200, 20, juce::Justification::left);
-            g.setFont(mono(12.f)); g.drawText("REBUILD", estArea.getX() + 12, 436, 90, 18, juce::Justification::left);
-            g.setColour(kGold); g.drawText(String(copycat::waveName(r.wave)) + " x" + String(r.voices) + " LP " + String(r.cutoffHz / 1000.0, 2) + " kHz", estArea.getX() + 90, 436, estArea.getWidth() - 102, 18, juce::Justification::right);
+            g.setColour(kDim); g.setFont(sans(13.f, true)); g.drawText("INSTANT COPY", estArea.getX() + 12, 428, 200, 20, juce::Justification::left);
+            g.setFont(mono(12.f)); g.drawText("REBUILD", estArea.getX() + 12, 462, 90, 18, juce::Justification::left);
+            g.setColour(kGold); g.drawText(String(copycat::waveName(r.wave)) + " x" + String(r.voices) + " LP " + String(r.cutoffHz / 1000.0, 2) + " kHz", estArea.getX() + 90, 462, estArea.getWidth() - 102, 18, juce::Justification::right);
         }
         else { g.setColour(kDim); g.setFont(sans(15.f)); g.drawFittedText("Nothing captured yet.", estArea.reduced(16).withHeight(60).translated(0, 36), juce::Justification::topLeft, 2); }
         g.setColour(kDim); g.setFont(sans(13.f, true)); g.drawText("LEVEL", estArea.getX() + 12, 566, 200, 20, juce::Justification::left);
