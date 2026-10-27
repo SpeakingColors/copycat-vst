@@ -9,23 +9,41 @@ void CopycatProcessor::processBlock(juce::AudioBuffer<float>& buf, juce::MidiBuf
 {
     // audio passes through untouched; we only copy it into a ring
     const int n = buf.getNumSamples(), chans = buf.getNumChannels(); if (chans < 1 || ring.empty()) return;
-    int w = writePos.load(); float pk = 0; const int size = (int) ring.size();
+    int w = writePos.load(); float pkL = 0, pkR = 0; const int size = (int) ring.size();
     for (int i = 0; i < n; ++i)
     {
-        float s = buf.getSample(0, i); if (chans > 1) s = 0.5f * (s + buf.getSample(1, i));
-        ring[(size_t) w] = s; w = (w + 1) % size; pk = std::max(pk, std::fabs(s));
+        const float l = buf.getSample(0, i), r = chans > 1 ? buf.getSample(1, i) : l; const float s = chans > 1 ? 0.5f * (l + r) : l;
+        ring[(size_t) w] = s; w = (w + 1) % size; pkL = std::max(pkL, std::fabs(l)); pkR = std::max(pkR, std::fabs(r));
     }
-    writePos.store(w); level.store(std::max(pk, level.load() * 0.9f));
+    writePos.store(w); levelL.store(std::max(pkL, levelL.load() * 0.9f)); levelR.store(std::max(pkR, levelR.load() * 0.9f));
 }
 
-juce::String CopycatProcessor::captureAndAnalyse()
+bool CopycatProcessor::analyseAudio(std::vector<float> x, double sampleRate, const juce::String& source)
 {
-    if (ring.empty()) return "Not ready: press play in the host first.";
+    copycat::Result r;
+    if (!copycat::analyse(x, sampleRate, r)) { statusText = "Could not find a clear sound in " + source + "."; return false; }
+    lastCapture.audio = std::move(x); lastCapture.fs = sampleRate; lastCapture.r = std::move(r); lastCapture.ok = true; ++captures;
+    statusText = "Captured " + juce::String((double) lastCapture.audio.size() / sampleRate, 1) + " s from " + source;
+    return true;
+}
+
+bool CopycatProcessor::captureNow()
+{
+    if (ring.empty()) { statusText = "Not ready: press play in the host first."; return false; }
     std::vector<float> x(ring.size()); const int w = writePos.load(); const size_t size = ring.size();
     for (size_t i = 0; i < size; ++i) x[i] = ring[((size_t) w + i) % size];          // oldest first
-    copycat::Result r;
-    if (!copycat::analyse(x, fs, r)) return "Could not find a clear sound in the last 2 seconds.";
-    return describe(r);
+    return analyseAudio(std::move(x), fs, "the input");
+}
+
+bool CopycatProcessor::loadFile(const juce::File& f)
+{
+    juce::AudioFormatManager fm; fm.registerBasicFormats();
+    std::unique_ptr<juce::AudioFormatReader> rd(fm.createReaderFor(f));
+    if (rd == nullptr) { statusText = "Could not read " + f.getFileName() + "."; return false; }
+    const int n = (int) std::min<juce::int64>(rd->lengthInSamples, (juce::int64) (rd->sampleRate * 2.0));
+    juce::AudioBuffer<float> b((int) std::max<unsigned>(1, rd->numChannels), n); rd->read(&b, 0, n, 0, true, true);
+    std::vector<float> x((size_t) n); for (int i = 0; i < n; ++i) { float s = 0; for (int c = 0; c < b.getNumChannels(); ++c) s += b.getSample(c, i); x[(size_t) i] = s / (float) b.getNumChannels(); }
+    return analyseAudio(std::move(x), rd->sampleRate, f.getFileName());
 }
 
 juce::String CopycatProcessor::describe(const copycat::Result& r)
@@ -43,21 +61,4 @@ juce::String CopycatProcessor::describe(const copycat::Result& r)
     return s;
 }
 
-namespace {
-class CopycatEditor : public juce::AudioProcessorEditor, private juce::Timer
-{
-public:
-    explicit CopycatEditor(CopycatProcessor& p) : AudioProcessorEditor(p), proc(p)
-    {
-        addAndMakeVisible(go); addAndMakeVisible(out); go.setButtonText("Capture and analyse the last 2 seconds");
-        out.setMultiLine(true); out.setReadOnly(true); out.setText("Play the sound you want to copy, then press the button.");
-        go.onClick = [this] { out.setText(proc.captureAndAnalyse()); };
-        setSize(520, 360); startTimerHz(10);
-    }
-    void resized() override { auto r = getLocalBounds().reduced(8); go.setBounds(r.removeFromTop(32)); r.removeFromTop(6); out.setBounds(r); }
-    void timerCallback() override { go.setColour(juce::TextButton::buttonColourId, proc.level.load() > 0.01f ? juce::Colours::seagreen : juce::Colours::darkgrey); }
-private:
-    CopycatProcessor& proc; juce::TextButton go; juce::TextEditor out;
-};
-}
-juce::AudioProcessorEditor* CopycatProcessor::createEditor() { return new CopycatEditor(*this); }
+// createEditor() lives in CopycatEditor.cpp

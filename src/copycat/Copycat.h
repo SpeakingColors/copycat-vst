@@ -1,5 +1,5 @@
 // Copycat: the plugin. Listens to the audio passing through (it is not changed), keeps the last 2 seconds, and on Capture
-// analyses them with the engine in src/core. The editor is a plain text readout for now; the cat-ui editor from docs/mockup is on the ROADMAP.
+// analyses them with the engine in src/core. The editor (CopycatEditor.cpp) follows docs/mockup.
 #pragma once
 #include <juce_audio_processors/juce_audio_processors.h>
 #include "../core/CopycatAnalysis.h"
@@ -27,14 +27,23 @@ public:
     void getStateInformation(juce::MemoryBlock&) override {}
     void setStateInformation(const void*, int) override {}
 
-    // message thread: copy the last 2 s, analyse, return the text report
-    juce::String captureAndAnalyse();
+    // message thread: copy the last 2 s and analyse them. Returns true when a clear sound was found; status() says what happened.
+    bool captureNow();
+    // message thread: analyse the first 2 s of an audio file
+    bool loadFile(const juce::File& f);
     static juce::String describe(const copycat::Result& r);
-    std::atomic<float> level { 0.f };
+    std::atomic<float> levelL { 0.f }, levelR { 0.f };
+
+    struct Capture { std::vector<float> audio; double fs = 44100; copycat::Result r; bool ok = false; };
+    const Capture& last() const { return lastCapture; }
+    const juce::String& status() const { return statusText; }
+    int captureCount() const { return captures; }   // goes up on every successful capture, so the editor knows to redraw
 
 private:
     static constexpr int kSeconds = 2;
     std::vector<float> ring; std::atomic<int> writePos { 0 };
     double fs = 44100;
+    bool analyseAudio(std::vector<float> x, double sampleRate, const juce::String& source);
+    Capture lastCapture; juce::String statusText { "Play the sound you want to copy, then press Capture 2 s." }; int captures = 0;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(CopycatProcessor)
 };
