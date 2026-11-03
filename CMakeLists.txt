@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(copycat VERSION 0.1.0 LANGUAGES C CXX)
+project(copycat VERSION 0.1.1 LANGUAGES C CXX)
 
 include(FetchContent)
 FetchContent_Declare(juce GIT_REPOSITORY https://github.com/juce-framework/JUCE.git
