@@ -1,6 +1,6 @@
 // Copycat window, built from docs/mockup/copycat.html: header, capture bar, five views (Sound, Synth guess, Envelope & filter,
 // EQ curve, Recipes), estimates panel and level meter. Fixed aspect ratio, resizable from every corner and edge, wood cheeks.
-// Not built yet (needs the C++ Rebuild synth, see ROADMAP): the Original / Copy listening buttons, spectrum match, presets.
+// Original / Copy buttons play through the output (Rebuild synth in src/core/RebuildSynth.h). Not built yet: presets, settings.
 #include "Copycat.h"
 #include <catui/CatLookAndFeel.h>
 #include <catui/RenderGate.h>
@@ -243,7 +243,9 @@ public:
         const char* names[] = { "Sound", "Synth guess", "Envelope & filter", "EQ curve", "Recipes" };
         for (int i = 0; i < 5; ++i) { tabs[i] = std::make_unique<Pill>(names[i], true); c.addAndMakeVisible(*tabs[i]); tabs[i]->setRadioGroupId(7); tabs[i]->setClickingTogglesState(true); tabs[i]->onClick = [this, i] { selectTab(i); }; }
         tabs[0]->setToggleState(true, juce::dontSendNotification);
-        for (auto* b : { &orig, &copy }) { c.addAndMakeVisible(*b); b->setEnabled(false); b->setTooltip("Needs the Rebuild synth, which is not built yet (see ROADMAP)."); }
+        for (auto* b : { &orig, &copy }) c.addAndMakeVisible(*b);
+        orig.setTooltip("Hear the captured sound through the output."); copy.setTooltip("Hear the Rebuild synth play what was found: pitch, oscillator, voices, filter and envelope. The status line shows how close the spectrum is.");
+        orig.onClick = [this] { proc.startAudition(false); content.repaint(); }; copy.onClick = [this] { proc.startAudition(true); content.repaint(); };
         c.addAndMakeVisible(view); c.addAndMakeVisible(meter);
         view.onHint = [this](const String& s) { hint = s; content.repaint(hintArea); };
         constrainer.setFixedAspectRatio((double) kBaseW / kBaseH); constrainer.setSizeLimits(kBaseW / 2, kBaseH / 2, kBaseW * 2, kBaseH * 2);

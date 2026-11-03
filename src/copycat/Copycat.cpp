@@ -17,7 +17,14 @@ void CopycatProcessor::processBlock(juce::AudioBuffer<float>& buf, juce::MidiBuf
         const float l = buf.getSample(0, i), r = chans > 1 ? buf.getSample(1, i) : l; const float s = chans > 1 ? 0.5f * (l + r) : l;
         ring[(size_t) w] = s; w = (w + 1) % size; pkL = std::max(pkL, std::fabs(l)); pkR = std::max(pkR, std::fabs(r));
     }
-    writePos.store(w); levelL.store(std::max(pkL, levelL.load() * 0.9f)); levelR.store(std::max(pkR, levelR.load() * 0.9f));
+    writePos.store(w);
+    { const int pos = auditionPos.load();      // the audition is added after the input was copied, so a capture never records it
+      if (pos >= 0 && auditionLock.tryEnter()) {
+          int q = pos; const int len = (int) auditionAudio.size();
+          for (int i = 0; i < n && q < len; ++i, ++q) for (int c = 0; c < chans; ++c) buf.addSample(c, i, auditionAudio[(size_t) q]);
+          auditionLock.exit(); auditionPos.store(q >= len ? -1 : q);
+      } }
+    levelL.store(std::max(pkL, levelL.load() * 0.9f)); levelR.store(std::max(pkR, levelR.load() * 0.9f));
 }
 
 bool CopycatProcessor::analyseAudio(std::vector<float> x, double sampleRate, const juce::String& source)
@@ -35,6 +42,25 @@ bool CopycatProcessor::captureNow()
     std::vector<float> x(ring.size()); const int w = writePos.load(); const size_t size = ring.size();
     for (size_t i = 0; i < size; ++i) x[i] = ring[((size_t) w + i) % size];          // oldest first
     return analyseAudio(std::move(x), fs, "the input");
+}
+
+bool CopycatProcessor::startAudition(bool copy)
+{
+    if (!lastCapture.ok || lastCapture.audio.empty()) { statusText = "Capture a sound first."; return false; }
+    const double hostFs = fs > 0 ? fs : 44100.0; std::vector<float> src;
+    float pk = 0; for (float v : lastCapture.audio) pk = std::max(pk, std::fabs(v));
+    if (!copy) src = lastCapture.audio;
+    else
+    {
+        src = copycat::renderCopy(copycat::RebuildParams::from(lastCapture.r), lastCapture.fs, std::max(0.05, (double) pk));     // at the capture's rate, so the spectra line up
+        copycat::Result c; match = copycat::analyse(src, lastCapture.fs, c) ? std::max(0.0, copycat::spectrumMatch(lastCapture.r, c)) : 0.0;
+    }
+    const double ratio = lastCapture.fs / hostFs; const size_t n = (size_t) ((double) src.size() / ratio); std::vector<float> y(n);      // to the host rate
+    for (size_t i = 0; i < n; ++i) { const double q = (double) i * ratio; const size_t i0 = std::min((size_t) q, src.size() - 1), i1 = std::min(i0 + 1, src.size() - 1); const float f = (float) (q - (double) i0); y[i] = src[i0] * (1 - f) + src[i1] * f; }
+    for (auto& v : y) v *= 0.8f;
+    { const juce::SpinLock::ScopedLockType sl(auditionLock); auditionAudio = std::move(y); auditionPos.store(0); }
+    statusText = copy ? "Playing the copy (spectrum match " + juce::String(juce::roundToInt(match * 100.0)) + " %)." : "Playing the original capture.";
+    return true;
 }
 
 bool CopycatProcessor::loadFile(const juce::File& f)

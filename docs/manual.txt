@@ -5,7 +5,7 @@ Copycat is a sound analyser. Play a sound through it and it estimates the note, 
 - Put Copycat on a track that plays the sound you want to study (or open the standalone app and feed it audio).
 - Play the sound, then press Capture and analyse the last 2 seconds. The result appears as text in the window.
 - The button turns green while sound is arriving. The audio passes through unchanged.
-- Note: this version has a plain text window. The designed window (spectrogram, envelope and EQ views, Rebuild synth) is in the mockup in the repository and is not built yet.
+- Press Original to hear the captured sound through the output, or Copy to hear the Rebuild synth play what was found (one note at the detected pitch). The status line shows how close the spectrum is, in percent. The copy is checked by measuring it again, not by ear: judge it with your ears.
 
 # What it reports
 - Note and key, chord, and tempo of the captured sound.

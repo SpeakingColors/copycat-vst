@@ -3,6 +3,7 @@
 #pragma once
 #include <juce_audio_processors/juce_audio_processors.h>
 #include "../core/CopycatAnalysis.h"
+#include "../core/RebuildSynth.h"
 #include <atomic>
 
 class CopycatProcessor : public juce::AudioProcessor
@@ -38,6 +39,12 @@ public:
     const Capture& last() const { return lastCapture; }
     const juce::String& status() const { return statusText; }
     void applyPendingState();                       // message thread (the editor calls it): analyses audio restored by setStateInformation
+    // message thread: listen to the captured sound ("Original") or to the Rebuild synth playing the analysis ("Copy"). Added to the output, once.
+    // Returns false when there is nothing to play yet. Playing again restarts; stopAudition() stops.
+    bool startAudition(bool copy);
+    void stopAudition() { auditionPos.store(-1); }
+    bool auditioning() const { return auditionPos.load() >= 0; }
+    double matchScore() const { return match; }     // 0..1: how alike the copy's long term spectrum is to the original's, set by startAudition(true)
     int captureCount() const { return captures; }   // goes up on every successful capture, so the editor knows to redraw
 
 private:
@@ -46,6 +53,7 @@ private:
     double fs = 44100;
     bool analyseAudio(std::vector<float> x, double sampleRate, const juce::String& source);
     juce::CriticalSection pendingLock; std::vector<float> pendingAudio; double pendingFs = 0; std::atomic<bool> hasPending { false };
+    juce::SpinLock auditionLock; std::vector<float> auditionAudio; std::atomic<int> auditionPos { -1 }; double match = 0;
     Capture lastCapture; juce::String statusText { "Play the sound you want to copy, then press Capture 2 s." }; int captures = 0;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(CopycatProcessor)
 };

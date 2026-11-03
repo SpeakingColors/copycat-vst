@@ -1,5 +1,6 @@
 // Core tests for Copycat. Pure C++, no JUCE. The test sounds are built here with additive synthesis.
 #include "../src/core/CopycatAnalysis.h"
+#include "../src/core/RebuildSynth.h"
 #include <cstdio>
 #include <random>
 using namespace copycat;
@@ -132,8 +133,28 @@ static void testEdgeCases() {
     std::mt19937 rng(1); std::uniform_real_distribution<float> u(-1.f, 1.f); std::vector<float> noise((size_t)(sr * 1.5)); for (auto& v : noise) v = 0.3f * u(rng);
     Result N; analyse(noise, sr, N); CHECK(std::isfinite(N.f0), "noise gives a finite answer");
 }
+static void testRebuild() {
+    // analyse a test sound, rebuild it, analyse the copy: the copy must read about the same
+    for (Wave w : { Wave::Saw, Wave::Square }) for (int poles : { 2, 4 }) {
+        Synth s; s.wave = w; s.f = 220; s.cutoff = 2500; s.poles = poles; s.A = 0.02; s.D = 0.25; s.S = 0.6; s.R = 0.4; s.gate = 1.0; auto x = synth(s); Result R; CHECK(analyse(x, sr, R), "rebuild source analyses");
+        auto y = renderCopy(RebuildParams::from(R), sr); Result C; CHECK(analyse(y, sr, C), "the copy analyses");
+        CHECK(std::fabs(C.f0 / R.f0 - 1) < 0.01, "%s copy pitch %.2f vs %.2f", waveName(w), C.f0, R.f0);
+        CHECK(C.wave == R.wave, "copy oscillator %s vs %s", waveName(C.wave), waveName(R.wave));
+        const double ratio = C.cutoffHz / R.cutoffHz; CHECK(ratio > 0.7 && ratio < 1.4, "%s %d poles: copy cutoff %.0f vs %.0f", waveName(w), poles, C.cutoffHz, R.cutoffHz);
+        CHECK(C.slope == R.slope || w == Wave::Square, "copy slope %d vs %d", C.slope, R.slope);
+        CHECK(std::fabs(C.env.sustain - R.env.sustain) < 0.2, "copy sustain %.2f vs %.2f", C.env.sustain, R.env.sustain);
+        CHECK(spectrumMatch(R, C) > 0.9, "spectrum match %.3f", spectrumMatch(R, C));
+    }
+    // detuned stack keeps its voice count; silence after release; no NaN
+    Synth s; s.f = 220; s.voices = 7; s.detuneC = 20; s.cutoff = 5000; s.R = 0.3; auto x = synth(s); Result R; analyse(x, sr, R);
+    auto y = renderCopy(RebuildParams::from(R), sr); Result C; analyse(y, sr, C); CHECK(C.voices == R.voices, "copy voices %d vs %d", C.voices, R.voices);
+    bool bad = false; for (float v : y) if (!std::isfinite(v) || std::fabs(v) > 1.0f) bad = true; CHECK(!bad, "copy is finite and within range");
+    float tail = 0; for (size_t i = y.size() - 200; i < y.size(); ++i) tail = std::max(tail, std::fabs(y[i])); CHECK(tail < 0.01f, "the copy ends in silence, got %.4f", tail);
+    // a note off during the attack still releases
+    RebuildVoice v; v.prepare(sr); RebuildParams p; p.env.attack = 0.5; p.env.release = 0.05; v.setParams(p); v.noteOn(); for (int i = 0; i < 1000; ++i) v.process(); v.noteOff(); for (int i = 0; i < (int) (0.2 * sr); ++i) v.process(); CHECK(!v.active(), "voice ends after note off");
+}
 int main() {
-    testF0(); testFullNote(); testCutoffSweep(); testWaves(); testVoices(); testKeyChord(); testTempo(); testTempoThroughAnalyse(); testEq(); testEqCleanTone(); testPack16(); testEdgeCases();
+    testF0(); testFullNote(); testCutoffSweep(); testWaves(); testVoices(); testKeyChord(); testTempo(); testTempoThroughAnalyse(); testEq(); testEqCleanTone(); testPack16(); testRebuild(); testEdgeCases();
     if (fails) { std::printf("%d FAILED\n", fails); return 1; }
     std::printf("all tests passed\n"); return 0;
 }

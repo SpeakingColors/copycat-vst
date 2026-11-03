@@ -49,7 +49,7 @@ struct Result {
     std::string key; double keyStrength = 0; std::array<double, 12> chroma {};
     Chord chord; bool hasChord = false;
     double bpm = 0; int onsets = 0;                      // bpm 0 = not enough hits
-    Env env;
+    Env env; double gateSec = 0;                         // how long the note was held (from onset to the start of the release)
     std::vector<float> longTerm; double longTermBinHz = 0;      // dB, 4096 point average
     double cutoffHz = 16000; int slope = 24;
     Wave wave = Wave::Saw; std::vector<double> harmonicsDb;
@@ -244,7 +244,7 @@ inline bool analyse(const std::vector<float>& x, double sr, Result& R) {
     if (R.f0 < 30) return false;
     const double mi = 69 + 12 * std::log2(R.f0 / 440); R.midi = (int) std::lround(mi); R.cents = (int) std::lround((mi - R.midi) * 100); R.noteName_ = std::string(noteName(R.midi)) + std::to_string(R.midi / 12 - 1);
     const size_t rw = (size_t) clampd(std::round(sr / R.f0 * 1.5), 240, 2400);
-    auto re = rmsEnv(x, rw, win); size_t gate = 0; R.env = fitAdsr(re, dt, &gate);
+    auto re = rmsEnv(x, rw, win); size_t gate = 0; R.env = fitAdsr(re, dt, &gate); R.gateSec = std::max(0.0, (double) gate * dt - R.env.onset);
     R.chroma = chromaOf(x, 0, x.size(), sr); bestKey(R.chroma, R.key, R.keyStrength);
     R.hasChord = bestChord(chromaOf(x, x.size() > 12288 ? x.size() - 12288 : 0, x.size(), sr), R.chord);
     R.bpm = findTempo(rmsEnv(x, (size_t) std::lround(0.01 * sr), win), dt, &R.onsets);       // a fixed 10 ms window: the pitch-sized window above smears the hits of a low or slow sound
