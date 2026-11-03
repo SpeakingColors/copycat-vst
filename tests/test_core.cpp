@@ -50,7 +50,20 @@ static void testFullNote() {
     CHECK(R.env.release > 0.1 && R.env.release < 1.5, "release %.2f s is in a believable range for 0.5 s", R.env.release);
     CHECK(R.voices == 1, "single voice, got %d", R.voices);
     // four cascaded one-pole filters at 3 kHz have their combined -3 dB point near 1.3 kHz
-    CHECK(R.cutoffHz > 650 && R.cutoffHz < 2600, "cutoff %.0f Hz is within a factor of 2 of the filter's 1.3 kHz -3 dB point", R.cutoffHz);
+    CHECK(R.cutoffHz > 1000 && R.cutoffHz < 1700, "cutoff %.0f Hz is within 30 percent of the filter's 1.3 kHz -3 dB point", R.cutoffHz);
+    CHECK(R.slope == 24, "four poles read as a 24 dB slope, got %d", R.slope);
+}
+static void testCutoffSweep() {
+    // cutoff must follow the filter, not the pitch: 1 and 4 cascaded poles, several pitches and cutoffs; the answer is the -3 dB point
+    for (int poles : { 1, 2, 4 }) for (double fc : { 1000.0, 2000.0, 4000.0 }) for (double f0 : { 110.0, 220.0, 330.0 }) {
+        Synth s; s.f = f0; s.cutoff = fc; s.poles = poles; s.A = 0.01; s.D = 0.2; s.S = 0.8; s.R = 0.3; auto x = synth(s); Result R; analyse(x, sr, R);
+        const double t3 = fc * std::sqrt(std::pow(2.0, 1.0 / poles) - 1), ratio = R.cutoffHz / t3;
+        CHECK(ratio > 0.8 && ratio < 1.3, "%d poles at %.0f Hz, note %.0f Hz: -3 dB point %.0f Hz read as %.0f Hz", poles, fc, f0, t3, R.cutoffHz);
+        if (fc <= 2000) CHECK(R.slope == (poles == 4 ? 24 : 12), "%d poles at %.0f Hz read as a %d dB slope", poles, fc, R.slope);
+    }
+    // an unfiltered saw reads as open
+    Synth o; o.f = 220; o.cutoff = 0; auto xo = synth(o); Result Ro; analyse(xo, sr, Ro);
+    CHECK(Ro.cutoffHz >= 12000, "an unfiltered saw reads as an open filter, got %.0f Hz", Ro.cutoffHz);
 }
 static void testWaves() {
     for (Wave w : { Wave::Saw, Wave::Square, Wave::Triangle, Wave::Sine }) {
@@ -86,6 +99,18 @@ static void testTempo() {
     std::vector<float> flat(48000, 0.1f); for (size_t i = 0; i < flat.size(); ++i) flat[i] = 0.1f * (float) std::sin(0.05 * (double) i);
     CHECK(findTempo(rmsEnv(flat, 480, 240), 240.0 / sr) == 0.0, "no hits means no tempo");
 }
+static void testTempoThroughAnalyse() {
+    // the whole analyser on a looped kick: the beat must be found whatever the pitch of the kick and whether the tempo is slow or fast
+    for (double bpm : { 90.0, 120.0, 150.0, 170.0 }) for (double hz : { 60.0, 120.0, 200.0 }) {
+        std::vector<float> x((size_t)(8 * sr), 0.f); std::mt19937 rng(7); std::uniform_real_distribution<float> u(-1.f, 1.f); const double per = 60.0 / bpm;
+        for (double t = 0.2; t < 7.5; t += per) for (size_t i = 0; i < 6000; ++i) x[(size_t)(t * sr) + i] += 0.8f * std::exp(-(float) i / 1200.f) * (float) std::sin(2 * kPi * hz * (double) i / sr) + 0.1f * u(rng) * std::exp(-(float) i / 800.f);
+        Result R; analyse(x, sr, R);
+        CHECK(std::fabs(R.bpm - bpm) < 3.0, "%.0f BPM kick at %.0f Hz read as %.1f BPM", bpm, hz, R.bpm);
+    }
+}
+static void testEqCleanTone() {
+    for (double f : { 110.0, 220.0, 440.0 }) { Synth s; s.f = f; auto x = synth(s); Result R; analyse(x, sr, R); CHECK(R.eq.empty(), "a clean saw at %.0f Hz gets no EQ advice (got %zu bands)", f, R.eq.size()); }
+}
 static void testEq() {
     // pink-ish tilt plus a 2 kHz bump: the biggest suggestion should be a cut near 2 kHz
     const double bh = sr / 4096; std::vector<float> db(2048); for (size_t i = 1; i < db.size(); ++i) { const double f = (double) i * bh; db[i] = (float)(-3.0 * std::log2(f / 100.0) + 9.0 * std::exp(-std::pow(std::log2(f / 2000.0) / 0.35, 2))); }
@@ -99,7 +124,7 @@ static void testEdgeCases() {
     Result N; analyse(noise, sr, N); CHECK(std::isfinite(N.f0), "noise gives a finite answer");
 }
 int main() {
-    testF0(); testFullNote(); testWaves(); testVoices(); testKeyChord(); testTempo(); testEq(); testEdgeCases();
+    testF0(); testFullNote(); testCutoffSweep(); testWaves(); testVoices(); testKeyChord(); testTempo(); testTempoThroughAnalyse(); testEq(); testEqCleanTone(); testEdgeCases();
     if (fails) { std::printf("%d FAILED\n", fails); return 1; }
     std::printf("all tests passed\n"); return 0;
 }
