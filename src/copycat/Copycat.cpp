@@ -1,5 +1,6 @@
 #include "Copycat.h"
 #include <juce_audio_formats/juce_audio_formats.h>
+#include <cstring>
 
 CopycatProcessor::CopycatProcessor()
     : AudioProcessor(BusesProperties().withInput("Input", juce::AudioChannelSet::stereo(), true).withOutput("Output", juce::AudioChannelSet::stereo(), true)) {}
@@ -45,6 +46,37 @@ bool CopycatProcessor::loadFile(const juce::File& f)
     juce::AudioBuffer<float> b((int) std::max<unsigned>(1, rd->numChannels), n); rd->read(&b, 0, n, 0, true, true);
     std::vector<float> x((size_t) n); for (int i = 0; i < n; ++i) { float s = 0; for (int c = 0; c < b.getNumChannels(); ++c) s += b.getSample(c, i); x[(size_t) i] = s / (float) b.getNumChannels(); }
     return analyseAudio(std::move(x), rd->sampleRate, f.getFileName());
+}
+
+void CopycatProcessor::getStateInformation(juce::MemoryBlock& dest)
+{
+    juce::XmlElement xml("COPYCAT"); xml.setAttribute("version", 1);
+    std::vector<float> pend; double pf = 0; { const juce::ScopedLock sl(pendingLock); pend = pendingAudio; pf = pendingFs; }     // restored but not analysed yet: keep it, so a project saved without opening the window loses nothing
+    const std::vector<float>& audio = !pend.empty() ? pend : lastCapture.audio; const double f = !pend.empty() ? pf : lastCapture.fs;
+    if (!audio.empty() && (!pend.empty() || lastCapture.ok))
+    {
+        const auto pk = copycat::pack16(audio); juce::MemoryBlock mb(pk.data(), pk.size() * sizeof(int16_t));
+        xml.setAttribute("fs", f); xml.setAttribute("samples", (int) pk.size()); xml.setAttribute("audio", mb.toBase64Encoding());
+    }
+    copyXmlToBinary(xml, dest);
+}
+
+void CopycatProcessor::setStateInformation(const void* data, int size)
+{
+    auto xml = getXmlFromBinary(data, size); if (xml == nullptr || !xml->hasTagName("COPYCAT") || !xml->hasAttribute("audio")) return;
+    juce::MemoryOutputStream out; if (!juce::Base64::convertFromBase64(out, xml->getStringAttribute("audio"))) return;
+    const int n = xml->getIntAttribute("samples"); const double f = xml->getDoubleAttribute("fs");
+    if (n < 20000 || f < 8000.0 || f > 384000.0 || out.getDataSize() != (size_t) n * sizeof(int16_t)) return;     // a damaged or foreign state is ignored
+    std::vector<int16_t> pk((size_t) n); std::memcpy(pk.data(), out.getData(), (size_t) n * sizeof(int16_t));
+    { const juce::ScopedLock sl(pendingLock); pendingAudio = copycat::unpack16(pk.data(), pk.size()); pendingFs = f; }
+    hasPending.store(true);
+}
+
+void CopycatProcessor::applyPendingState()
+{
+    if (!hasPending.exchange(false)) return;
+    std::vector<float> x; double f; { const juce::ScopedLock sl(pendingLock); x = std::move(pendingAudio); f = pendingFs; pendingAudio.clear(); }
+    if (!x.empty()) analyseAudio(std::move(x), f, "the saved project");
 }
 
 juce::String CopycatProcessor::describe(const copycat::Result& r)

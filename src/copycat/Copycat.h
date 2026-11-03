@@ -24,8 +24,8 @@ public:
     void setCurrentProgram(int) override {}
     const juce::String getProgramName(int) override { return {}; }
     void changeProgramName(int, const juce::String&) override {}
-    void getStateInformation(juce::MemoryBlock&) override {}
-    void setStateInformation(const void*, int) override {}
+    void getStateInformation(juce::MemoryBlock&) override;     // the last capture (16 bit audio) is saved with the project
+    void setStateInformation(const void*, int) override;       // and analysed again on load, on the message thread (see applyPendingState)
 
     // message thread: copy the last 2 s and analyse them. Returns true when a clear sound was found; status() says what happened.
     bool captureNow();
@@ -37,6 +37,7 @@ public:
     struct Capture { std::vector<float> audio; double fs = 44100; copycat::Result r; bool ok = false; };
     const Capture& last() const { return lastCapture; }
     const juce::String& status() const { return statusText; }
+    void applyPendingState();                       // message thread (the editor calls it): analyses audio restored by setStateInformation
     int captureCount() const { return captures; }   // goes up on every successful capture, so the editor knows to redraw
 
 private:
@@ -44,6 +45,7 @@ private:
     std::vector<float> ring; std::atomic<int> writePos { 0 };
     double fs = 44100;
     bool analyseAudio(std::vector<float> x, double sampleRate, const juce::String& source);
+    juce::CriticalSection pendingLock; std::vector<float> pendingAudio; double pendingFs = 0; std::atomic<bool> hasPending { false };
     Capture lastCapture; juce::String statusText { "Play the sound you want to copy, then press Capture 2 s." }; int captures = 0;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(CopycatProcessor)
 };

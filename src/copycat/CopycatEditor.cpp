@@ -300,6 +300,7 @@ private:
             else if (armed && now - armedAt >= 2100) { armed = false; doCapture(); }
         }
         else armed = false;
+        proc.applyPendingState();
         if (proc.captureCount() != shownCount) refresh();
     }
 

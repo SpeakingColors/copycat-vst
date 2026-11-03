@@ -9,6 +9,7 @@
 #include <string>
 #include <array>
 #include <cstdio>
+#include <cstdint>
 
 namespace copycat {
 
@@ -227,6 +228,10 @@ inline std::vector<EqBand> suggestEq(const std::vector<float>& smoothDb, double 
     std::vector<EqBand> out; for (auto& d : dev) { if (out.size() >= 4) break; bool ok = true; for (auto& q : out) if (std::fabs(std::log2(q.freq / d.f)) <= 0.8) ok = false; if (ok && std::fabs(d.d) > 2.5) out.push_back({ d.f, clampd(-d.d * 0.6, -9, 9) }); }
     return out;
 }
+
+// 16 bit storage of a capture (used to save the last capture with the project); analysing the unpacked audio gives the same answer.
+inline std::vector<int16_t> pack16(const std::vector<float>& x) { std::vector<int16_t> o(x.size()); for (size_t i = 0; i < x.size(); ++i) o[i] = (int16_t) std::lround(clampd((double) x[i], -1.0, 1.0) * 32767.0); return o; }
+inline std::vector<float> unpack16(const int16_t* p, size_t n) { std::vector<float> o(n); for (size_t i = 0; i < n; ++i) o[i] = (float) p[i] / 32767.f; return o; }
 
 // Everything at once. x is mono at sample rate sr, at least 0.5 s, ideally one note or one hit.
 inline bool analyse(const std::vector<float>& x, double sr, Result& R) {

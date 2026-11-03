@@ -117,6 +117,15 @@ static void testEq() {
     auto eq = suggestEq(db, bh); CHECK(!eq.empty(), "eq suggestions exist");
     if (!eq.empty()) CHECK(std::fabs(std::log2(eq[0].freq / 2000.0)) < 0.35 && eq[0].gainDb < -2, "first suggestion is a cut near 2 kHz (got %.0f Hz %+.1f dB)", eq[0].freq, eq[0].gainDb);
 }
+static void testPack16() {
+    Synth s; s.f = 220; s.cutoff = 3000; s.voices = 7; s.detuneC = 18; s.A = 0.05; s.D = 0.4; s.S = 0.5; s.R = 0.5; auto x = synth(s);
+    Result a, b; analyse(x, sr, a); auto p = pack16(x); auto y = unpack16(p.data(), p.size()); analyse(y, sr, b);
+    CHECK(y.size() == x.size(), "unpacked audio has the same length");
+    CHECK(a.midi == b.midi && std::abs(a.cents - b.cents) <= 1, "same note after 16 bit storage (%d %+dc vs %d %+dc)", a.midi, a.cents, b.midi, b.cents);
+    CHECK(a.wave == b.wave && a.voices == b.voices && a.slope == b.slope, "same oscillator, voices and slope after 16 bit storage");
+    CHECK(std::fabs(a.cutoffHz / b.cutoffHz - 1.0) < 0.05 && std::fabs(a.env.sustain - b.env.sustain) < 0.03, "same cutoff and sustain after 16 bit storage (%.0f vs %.0f Hz)", a.cutoffHz, b.cutoffHz);
+    std::vector<float> loud = { 2.f, -2.f, 0.5f }; auto q = pack16(loud); CHECK(q[0] == 32767 && q[1] == -32767, "out of range samples are clamped, not wrapped");
+}
 static void testEdgeCases() {
     Result R; std::vector<float> tiny(100, 0.f); CHECK(!analyse(tiny, sr, R), "too short is refused");
     std::vector<float> silent((size_t) sr, 0.f); analyse(silent, sr, R);       // must not crash or hang
@@ -124,7 +133,7 @@ static void testEdgeCases() {
     Result N; analyse(noise, sr, N); CHECK(std::isfinite(N.f0), "noise gives a finite answer");
 }
 int main() {
-    testF0(); testFullNote(); testCutoffSweep(); testWaves(); testVoices(); testKeyChord(); testTempo(); testTempoThroughAnalyse(); testEq(); testEqCleanTone(); testEdgeCases();
+    testF0(); testFullNote(); testCutoffSweep(); testWaves(); testVoices(); testKeyChord(); testTempo(); testTempoThroughAnalyse(); testEq(); testEqCleanTone(); testPack16(); testEdgeCases();
     if (fails) { std::printf("%d FAILED\n", fails); return 1; }
     std::printf("all tests passed\n"); return 0;
 }
