@@ -43,13 +43,13 @@ Call Stack (most recent call first):
   CMakeLists.txt:11 (juce_add_plugin)
 
 
--- Configuring done (74.5s)
+-- Configuring done (97.7s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/runner/work/copycat-vst/copycat-vst/build
 [  1%] Building VST3 manifest helper for Copycat
 [  3%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/src/CatLookAndFeel.cpp.o
-[  5%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp.o
-[  6%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/src/CatFrame.cpp.o
+[  5%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/src/CatFrame.cpp.o
+[  6%] Building CXX object _deps/cat_ui-build/CMakeFiles/cat_ui.dir/__/juce-src/modules/juce_gui_basics/juce_gui_basics.cpp.o
 -- The CXX compiler identification is GNU 15.2.0
 -- Detecting CXX compiler ABI info
 -- Detecting CXX compiler ABI info - done
@@ -81,203 +81,193 @@ Call Stack (most recent call first):
 [ 31%] Building CXX object CMakeFiles/Copycat.dir/src/copycat/CopycatEditor.cpp.o
 [ 33%] Building CXX object CMakeFiles/Copycat.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.cpp.o
 In file included from /home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.h:5,
+                 from /home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.cpp:1:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::vector<float, std::allocator<float> > copycat::magSpec(const std::vector<float, std::allocator<float> >&, size_t, size_t, const std::vector<double>&, size_t)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:31:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   31 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:31:20: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   31 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
+      |                    ^~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘double copycat::findF0(const std::vector<float, std::allocator<float> >&, size_t, double, std::vector<float, std::allocator<float> >*, double*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:66:143: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+   66 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
+      |                                                                                                                                             ~~^~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:70:56: warning: declaration of ‘c’ shadows a previous local [-Wshadow]
+   70 |         for (size_t k = 2; k <= 5; ++k) { const size_t c = best * k; if (c + 3 >= m.size()) break; float mx = 0; size_t at = c; for (size_t j = c - 2; j <= c + 2; ++j) if (m[j] > mx) { mx = m[j]; at = j; } if (mx > upM) { upM = mx; up = at; } }
+      |                                                        ^
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:66:82: note: shadowed declaration is here
+   66 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
+      |                                                                                  ^
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:73:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   73 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:73:30: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   73 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
+      |                              ^~
+In file included from /home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.h:5,
                  from /home/runner/work/copycat-vst/copycat-vst/src/copycat/CopycatEditor.cpp:4:
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::vector<float, std::allocator<float> > copycat::magSpec(const std::vector<float, std::allocator<float> >&, size_t, size_t, const std::vector<double>&, size_t)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:30:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   30 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:31:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   31 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
       |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:30:20: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   30 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:31:20: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   31 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
       |                    ^~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In lambda function:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:99:46: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+   99 |         const double den = n * sxx - sx * sx != 0 ? n * sxx - sx * sx : 1, sl = (n * sxy - sx * sy) / den, ic = (sy - sl * sx) / n; double e = 0; for (size_t q = a0; q <= a1; ++q) { const double d = db[q] - (ic + sl * (double) q); e += d * d; } return e; };
+      |                            ~~~~~~~~~~~~~~~~~~^~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘copycat::Env copycat::fitAdsr(const std::vector<float, std::allocator<float> >&, double, size_t*, size_t*, size_t*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:107:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  107 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:107:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  107 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
+      |                                    ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::array<double, 12> copycat::chromaOf(const std::vector<float, std::allocator<float> >&, size_t, size_t, double)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:116:231: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  116 |         for (size_t b = lo + 1; b < hi; ++b) if (m[b] > m[b - 1] && m[b] >= m[b + 1] && m[b] > 0.08f * mx) { const double den = (double)(m[b - 1] - 2 * m[b] + m[b + 1]); const double d = 0.5 * (double)(m[b - 1] - m[b + 1]) / (den != 0 ? den : 1); pk.push_back({ ((double) b + d) * bh, (double) m[b] }); }
+      |                                                                                                                                                                                                                                   ~~~~^~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘double copycat::findF0(const std::vector<float, std::allocator<float> >&, size_t, double, std::vector<float, std::allocator<float> >*, double*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:66:143: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+   66 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
+      |                                                                                                                                             ~~^~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:70:56: warning: declaration of ‘c’ shadows a previous local [-Wshadow]
+   70 |         for (size_t k = 2; k <= 5; ++k) { const size_t c = best * k; if (c + 3 >= m.size()) break; float mx = 0; size_t at = c; for (size_t j = c - 2; j <= c + 2; ++j) if (m[j] > mx) { mx = m[j]; at = j; } if (mx > upM) { upM = mx; up = at; } }
+      |                                                        ^
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:66:82: note: shadowed declaration is here
+   66 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
+      |                                                                                  ^
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:73:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   73 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:73:30: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   73 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
+      |                              ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In lambda function:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:99:46: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+   99 |         const double den = n * sxx - sx * sx != 0 ? n * sxx - sx * sx : 1, sl = (n * sxy - sx * sy) / den, ic = (sy - sl * sx) / n; double e = 0; for (size_t q = a0; q <= a1; ++q) { const double d = db[q] - (ic + sl * (double) q); e += d * d; } return e; };
+      |                            ~~~~~~~~~~~~~~~~~~^~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘copycat::Env copycat::fitAdsr(const std::vector<float, std::allocator<float> >&, double, size_t*, size_t*, size_t*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:107:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  107 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:107:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  107 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
+      |                                    ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::array<double, 12> copycat::chromaOf(const std::vector<float, std::allocator<float> >&, size_t, size_t, double)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:116:231: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  116 |         for (size_t b = lo + 1; b < hi; ++b) if (m[b] > m[b - 1] && m[b] >= m[b + 1] && m[b] > 0.08f * mx) { const double den = (double)(m[b - 1] - 2 * m[b] + m[b + 1]); const double d = 0.5 * (double)(m[b - 1] - m[b + 1]) / (den != 0 ? den : 1); pk.push_back({ ((double) b + d) * bh, (double) m[b] }); }
+      |                                                                                                                                                                                                                                   ~~~~^~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘double copycat::findTempo(const std::vector<float, std::allocator<float> >&, double, int*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:147:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  147 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:147:35: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  147 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
+      |                                   ^~~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:150:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  150 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:150:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  150 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
+      |                                      ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In lambda function:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:160:92: warning: enumeration value ‘Sine’ not handled in switch [-Wswitch-enum]
+  160 |     auto shape = [](Wave w, int h) { const double lg = 20 * std::log10((double) h); switch (w) { case Wave::Saw: return -lg; case Wave::Square: return (h % 2) ? -lg : -60.0; case Wave::Triangle: return (h % 2) ? -2 * lg : -60.0; default: return h == 1 ? 0.0 : -60.0; } };
+      |                                                                                            ^
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::vector<float, std::allocator<float> > copycat::longTermSpectrum(const std::vector<float, std::allocator<float> >&, double, double*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:170:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  170 |     if (binHz) *binHz = sr / (double) NL; return s;
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:170:43: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  170 |     if (binHz) *binHz = sr / (double) NL; return s;
+      |                                           ^~~~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘void copycat::estimateCutoff(const std::vector<float, std::allocator<float> >&, double, double, Wave, double, double&, int&, double*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:187:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  187 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:187:37: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  187 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
+      |                                     ^~~
 In file included from /home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.h:5,
                  from /home/runner/work/copycat-vst/copycat-vst/src/Plugins.cpp:2:
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::vector<float, std::allocator<float> > copycat::magSpec(const std::vector<float, std::allocator<float> >&, size_t, size_t, const std::vector<double>&, size_t)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:30:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   30 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:31:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   31 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
       |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:30:20: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   30 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:31:20: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   31 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
       |                    ^~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘double copycat::findF0(const std::vector<float, std::allocator<float> >&, size_t, double, std::vector<float, std::allocator<float> >*, double*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:65:143: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-   65 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
-      |                                                                                                                                             ~~^~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:69:56: warning: declaration of ‘c’ shadows a previous local [-Wshadow]
-   69 |         for (size_t k = 2; k <= 5; ++k) { const size_t c = best * k; if (c + 3 >= m.size()) break; float mx = 0; size_t at = c; for (size_t j = c - 2; j <= c + 2; ++j) if (m[j] > mx) { mx = m[j]; at = j; } if (mx > upM) { upM = mx; up = at; } }
-      |                                                        ^
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:65:82: note: shadowed declaration is here
-   65 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
-      |                                                                                  ^
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:72:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   72 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
-      |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:72:30: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   72 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
-      |                              ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In lambda function:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:98:46: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-   98 |         const double den = n * sxx - sx * sx != 0 ? n * sxx - sx * sx : 1, sl = (n * sxy - sx * sy) / den, ic = (sy - sl * sx) / n; double e = 0; for (size_t q = a0; q <= a1; ++q) { const double d = db[q] - (ic + sl * (double) q); e += d * d; } return e; };
-      |                            ~~~~~~~~~~~~~~~~~~^~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘copycat::Env copycat::fitAdsr(const std::vector<float, std::allocator<float> >&, double, size_t*, size_t*, size_t*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:106:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  106 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
-      |     ^~
-In file included from /home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.h:5,
-                 from /home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.cpp:1:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::vector<float, std::allocator<float> > copycat::magSpec(const std::vector<float, std::allocator<float> >&, size_t, size_t, const std::vector<double>&, size_t)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:30:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   30 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
-      |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:30:20: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   30 |     if (!P) P = N; std::vector<std::complex<double>> a(P);
-      |                    ^~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:106:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  106 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
-      |                                    ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘double copycat::findF0(const std::vector<float, std::allocator<float> >&, size_t, double, std::vector<float, std::allocator<float> >*, double*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:65:143: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-   65 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
-      |                                                                                                                                             ~~^~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:69:56: warning: declaration of ‘c’ shadows a previous local [-Wshadow]
-   69 |         for (size_t k = 2; k <= 5; ++k) { const size_t c = best * k; if (c + 3 >= m.size()) break; float mx = 0; size_t at = c; for (size_t j = c - 2; j <= c + 2; ++j) if (m[j] > mx) { mx = m[j]; at = j; } if (mx > upM) { upM = mx; up = at; } }
-      |                                                        ^
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:65:82: note: shadowed declaration is here
-   65 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
-      |                                                                                  ^
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:72:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   72 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
-      |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:72:30: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   72 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
-      |                              ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::array<double, 12> copycat::chromaOf(const std::vector<float, std::allocator<float> >&, size_t, size_t, double)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:115:231: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-  115 |         for (size_t b = lo + 1; b < hi; ++b) if (m[b] > m[b - 1] && m[b] >= m[b + 1] && m[b] > 0.08f * mx) { const double den = (double)(m[b - 1] - 2 * m[b] + m[b + 1]); const double d = 0.5 * (double)(m[b - 1] - m[b + 1]) / (den != 0 ? den : 1); pk.push_back({ ((double) b + d) * bh, (double) m[b] }); }
-      |                                                                                                                                                                                                                                   ~~~~^~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In lambda function:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:98:46: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-   98 |         const double den = n * sxx - sx * sx != 0 ? n * sxx - sx * sx : 1, sl = (n * sxy - sx * sy) / den, ic = (sy - sl * sx) / n; double e = 0; for (size_t q = a0; q <= a1; ++q) { const double d = db[q] - (ic + sl * (double) q); e += d * d; } return e; };
-      |                            ~~~~~~~~~~~~~~~~~~^~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘copycat::Env copycat::fitAdsr(const std::vector<float, std::allocator<float> >&, double, size_t*, size_t*, size_t*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:106:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  106 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
-      |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:106:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  106 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
-      |                                    ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘double copycat::findF0(const std::vector<float, std::allocator<float> >&, size_t, double, std::vector<float, std::allocator<float> >*, double*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:65:143: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-   65 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
-      |                                                                                                                                             ~~^~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:69:56: warning: declaration of ‘c’ shadows a previous local [-Wshadow]
-   69 |         for (size_t k = 2; k <= 5; ++k) { const size_t c = best * k; if (c + 3 >= m.size()) break; float mx = 0; size_t at = c; for (size_t j = c - 2; j <= c + 2; ++j) if (m[j] > mx) { mx = m[j]; at = j; } if (mx > upM) { upM = mx; up = at; } }
-      |                                                        ^
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:65:82: note: shadowed declaration is here
-   65 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
-      |                                                                                  ^
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:72:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-   72 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
-      |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:72:30: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-   72 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
-      |                              ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::array<double, 12> copycat::chromaOf(const std::vector<float, std::allocator<float> >&, size_t, size_t, double)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:115:231: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-  115 |         for (size_t b = lo + 1; b < hi; ++b) if (m[b] > m[b - 1] && m[b] >= m[b + 1] && m[b] > 0.08f * mx) { const double den = (double)(m[b - 1] - 2 * m[b] + m[b + 1]); const double d = 0.5 * (double)(m[b - 1] - m[b + 1]) / (den != 0 ? den : 1); pk.push_back({ ((double) b + d) * bh, (double) m[b] }); }
-      |                                                                                                                                                                                                                                   ~~~~^~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In lambda function:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:98:46: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-   98 |         const double den = n * sxx - sx * sx != 0 ? n * sxx - sx * sx : 1, sl = (n * sxy - sx * sy) / den, ic = (sy - sl * sx) / n; double e = 0; for (size_t q = a0; q <= a1; ++q) { const double d = db[q] - (ic + sl * (double) q); e += d * d; } return e; };
-      |                            ~~~~~~~~~~~~~~~~~~^~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘copycat::Env copycat::fitAdsr(const std::vector<float, std::allocator<float> >&, double, size_t*, size_t*, size_t*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:106:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  106 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
-      |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:106:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  106 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
-      |                                    ^~
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘double copycat::findTempo(const std::vector<float, std::allocator<float> >&, double, int*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:146:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  146 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:147:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  147 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
       |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:146:35: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  146 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:147:35: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  147 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
       |                                   ^~~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:149:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  149 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:150:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  150 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
       |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:149:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  149 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:150:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  150 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
       |                                      ^~
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In lambda function:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:159:92: warning: enumeration value ‘Sine’ not handled in switch [-Wswitch-enum]
-  159 |     auto shape = [](Wave w, int h) { const double lg = 20 * std::log10((double) h); switch (w) { case Wave::Saw: return -lg; case Wave::Square: return (h % 2) ? -lg : -60.0; case Wave::Triangle: return (h % 2) ? -2 * lg : -60.0; default: return h == 1 ? 0.0 : -60.0; } };
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:160:92: warning: enumeration value ‘Sine’ not handled in switch [-Wswitch-enum]
+  160 |     auto shape = [](Wave w, int h) { const double lg = 20 * std::log10((double) h); switch (w) { case Wave::Saw: return -lg; case Wave::Square: return (h % 2) ? -lg : -60.0; case Wave::Triangle: return (h % 2) ? -2 * lg : -60.0; default: return h == 1 ? 0.0 : -60.0; } };
       |                                                                                            ^
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:213:79: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  213 |     if (n >= 3) { const double den = n * sxx - sx * sx; const double sl = den != 0 ? -(n * sxy - sx * sy) / den : 24; if (slopeDbOct) *slopeDbOct = sl; slope = sl >= 14 ? 24 : 12; }
+      |                                                                           ~~~~^~~~
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::vector<float, std::allocator<float> > copycat::longTermSpectrum(const std::vector<float, std::allocator<float> >&, double, double*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:169:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  169 |     if (binHz) *binHz = sr / (double) NL; return s;
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:170:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  170 |     if (binHz) *binHz = sr / (double) NL; return s;
       |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:169:43: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  169 |     if (binHz) *binHz = sr / (double) NL; return s;
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:170:43: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  170 |     if (binHz) *binHz = sr / (double) NL; return s;
       |                                           ^~~~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::array<double, 12> copycat::chromaOf(const std::vector<float, std::allocator<float> >&, size_t, size_t, double)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:115:231: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-  115 |         for (size_t b = lo + 1; b < hi; ++b) if (m[b] > m[b - 1] && m[b] >= m[b + 1] && m[b] > 0.08f * mx) { const double den = (double)(m[b - 1] - 2 * m[b] + m[b + 1]); const double d = 0.5 * (double)(m[b - 1] - m[b + 1]) / (den != 0 ? den : 1); pk.push_back({ ((double) b + d) * bh, (double) m[b] }); }
-      |                                                                                                                                                                                                                                   ~~~~^~~~
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘void copycat::estimateCutoff(const std::vector<float, std::allocator<float> >&, double, double, Wave, double, double&, int&, double*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:186:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  186 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:187:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  187 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
       |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:186:37: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  186 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:187:37: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  187 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
       |                                     ^~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘double copycat::findTempo(const std::vector<float, std::allocator<float> >&, double, int*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:146:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  146 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘double copycat::findF0(const std::vector<float, std::allocator<float> >&, size_t, double, std::vector<float, std::allocator<float> >*, double*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:66:143: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+   66 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
+      |                                                                                                                                             ~~^~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:70:56: warning: declaration of ‘c’ shadows a previous local [-Wshadow]
+   70 |         for (size_t k = 2; k <= 5; ++k) { const size_t c = best * k; if (c + 3 >= m.size()) break; float mx = 0; size_t at = c; for (size_t j = c - 2; j <= c + 2; ++j) if (m[j] > mx) { mx = m[j]; at = j; } if (mx > upM) { upM = mx; up = at; } }
+      |                                                        ^
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:66:82: note: shadowed declaration is here
+   66 |     const double a = std::log(m[best - 1] + 1e-9), b = std::log(m[best] + 1e-9), c = std::log(m[best + 1] + 1e-9), d = a - 2 * b + c, off = d != 0 ? clampd(0.5 * (a - c) / d, -1.0, 1.0) : 0;
+      |                                                                                  ^
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:73:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   73 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
       |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:146:35: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  146 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
-      |                                   ^~~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:149:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  149 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
-      |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:149:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  149 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
-      |                                      ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:73:30: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   73 |     if (magOut) *magOut = m; if (binHz) *binHz = bh;
+      |                              ^~
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In lambda function:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:159:92: warning: enumeration value ‘Sine’ not handled in switch [-Wswitch-enum]
-  159 |     auto shape = [](Wave w, int h) { const double lg = 20 * std::log10((double) h); switch (w) { case Wave::Saw: return -lg; case Wave::Square: return (h % 2) ? -lg : -60.0; case Wave::Triangle: return (h % 2) ? -2 * lg : -60.0; default: return h == 1 ? 0.0 : -60.0; } };
-      |                                                                                            ^
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::vector<float, std::allocator<float> > copycat::longTermSpectrum(const std::vector<float, std::allocator<float> >&, double, double*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:169:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  169 |     if (binHz) *binHz = sr / (double) NL; return s;
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:99:46: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+   99 |         const double den = n * sxx - sx * sx != 0 ? n * sxx - sx * sx : 1, sl = (n * sxy - sx * sy) / den, ic = (sy - sl * sx) / n; double e = 0; for (size_t q = a0; q <= a1; ++q) { const double d = db[q] - (ic + sl * (double) q); e += d * d; } return e; };
+      |                            ~~~~~~~~~~~~~~~~~~^~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘copycat::Env copycat::fitAdsr(const std::vector<float, std::allocator<float> >&, double, size_t*, size_t*, size_t*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:107:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  107 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
       |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:169:43: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  169 |     if (binHz) *binHz = sr / (double) NL; return s;
-      |                                           ^~~~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:212:79: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-  212 |     if (n >= 3) { const double den = n * sxx - sx * sx; const double sl = den != 0 ? -(n * sxy - sx * sy) / den : 24; if (slopeDbOct) *slopeDbOct = sl; slope = sl >= 14 ? 24 : 12; }
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:107:36: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  107 |     if (gateOut) *gateOut = bestB; if (onOut) *onOut = on; if (pkOut) *pkOut = pkI;
+      |                                    ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:213:79: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  213 |     if (n >= 3) { const double den = n * sxx - sx * sx; const double sl = den != 0 ? -(n * sxy - sx * sy) / den : 24; if (slopeDbOct) *slopeDbOct = sl; slope = sl >= 14 ? 24 : 12; }
       |                                                                           ~~~~^~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘void copycat::estimateCutoff(const std::vector<float, std::allocator<float> >&, double, double, Wave, double, double&, int&, double*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:186:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  186 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
-      |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:186:37: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  186 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
-      |                                     ^~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:212:79: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-  212 |     if (n >= 3) { const double den = n * sxx - sx * sx; const double sl = den != 0 ? -(n * sxy - sx * sy) / den : 24; if (slopeDbOct) *slopeDbOct = sl; slope = sl >= 14 ? 24 : 12; }
-      |                                                                           ~~~~^~~~
-In file included from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.h:145,
-                 from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.h:64,
-                 from /home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.h:4:
-/home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors_headless/processors/juce_AudioProcessor.h: At global scope:
-/home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors_headless/processors/juce_AudioProcessor.h:292:18: warning: ‘virtual void juce::AudioProcessor::processBlock(juce::AudioBuffer<double>&, juce::MidiBuffer&)’ was hidden [-Woverloaded-virtual=]
-  292 |     virtual void processBlock (AudioBuffer<double>& buffer,
-      |                  ^~~~~~~~~~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.h:16:10: note:   by ‘virtual void CopycatProcessor::processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&)’
-   16 |     void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
-      |          ^~~~~~~~~~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::array<double, 12> copycat::chromaOf(const std::vector<float, std::allocator<float> >&, size_t, size_t, double)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:116:231: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  116 |         for (size_t b = lo + 1; b < hi; ++b) if (m[b] > m[b - 1] && m[b] >= m[b + 1] && m[b] > 0.08f * mx) { const double den = (double)(m[b - 1] - 2 * m[b] + m[b + 1]); const double d = 0.5 * (double)(m[b - 1] - m[b + 1]) / (den != 0 ? den : 1); pk.push_back({ ((double) b + d) * bh, (double) m[b] }); }
+      |                                                                                                                                                                                                                                   ~~~~^~~~
 In file included from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.h:145,
                  from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.h:64,
                  from /home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.h:4:
@@ -289,22 +279,49 @@ In file included from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce
    16 |     void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
       |          ^~~~~~~~~~~~
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘double copycat::findTempo(const std::vector<float, std::allocator<float> >&, double, int*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:146:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  146 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:147:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  147 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
       |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:146:35: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  146 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:147:35: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  147 |     if (env.size() < 4) return 0; float pk = 0; for (float v : env) pk = std::max(pk, v);
       |                                   ^~~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:149:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  149 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:150:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  150 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
       |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:149:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  149 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:150:38: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  150 |     if (onsetsOut) *onsetsOut = nOn; if (nOn < 3) return 0;
       |                                      ^~
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In lambda function:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:159:92: warning: enumeration value ‘Sine’ not handled in switch [-Wswitch-enum]
-  159 |     auto shape = [](Wave w, int h) { const double lg = 20 * std::log10((double) h); switch (w) { case Wave::Saw: return -lg; case Wave::Square: return (h % 2) ? -lg : -60.0; case Wave::Triangle: return (h % 2) ? -2 * lg : -60.0; default: return h == 1 ? 0.0 : -60.0; } };
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:160:92: warning: enumeration value ‘Sine’ not handled in switch [-Wswitch-enum]
+  160 |     auto shape = [](Wave w, int h) { const double lg = 20 * std::log10((double) h); switch (w) { case Wave::Saw: return -lg; case Wave::Square: return (h % 2) ? -lg : -60.0; case Wave::Triangle: return (h % 2) ? -2 * lg : -60.0; default: return h == 1 ? 0.0 : -60.0; } };
       |                                                                                            ^
+In file included from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.h:145,
+                 from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.h:64,
+                 from /home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.h:4:
+/home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors_headless/processors/juce_AudioProcessor.h: At global scope:
+/home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors_headless/processors/juce_AudioProcessor.h:292:18: warning: ‘virtual void juce::AudioProcessor::processBlock(juce::AudioBuffer<double>&, juce::MidiBuffer&)’ was hidden [-Woverloaded-virtual=]
+  292 |     virtual void processBlock (AudioBuffer<double>& buffer,
+      |                  ^~~~~~~~~~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.h:16:10: note:   by ‘virtual void CopycatProcessor::processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&)’
+   16 |     void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
+      |          ^~~~~~~~~~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::vector<float, std::allocator<float> > copycat::longTermSpectrum(const std::vector<float, std::allocator<float> >&, double, double*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:170:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  170 |     if (binHz) *binHz = sr / (double) NL; return s;
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:170:43: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  170 |     if (binHz) *binHz = sr / (double) NL; return s;
+      |                                           ^~~~~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘void copycat::estimateCutoff(const std::vector<float, std::allocator<float> >&, double, double, Wave, double, double&, int&, double*)’:
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:187:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  187 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
+      |     ^~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:187:37: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  187 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
+      |                                     ^~~
+/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:213:79: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
+  213 |     if (n >= 3) { const double den = n * sxx - sx * sx; const double sl = den != 0 ? -(n * sxy - sx * sy) / den : 24; if (slopeDbOct) *slopeDbOct = sl; slope = sl >= 14 ? 24 : 12; }
+      |                                                                           ~~~~^~~~
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/CopycatEditor.cpp: In member function ‘void {anonymous}::ViewPane::paintSound(juce::Graphics&)’:
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/CopycatEditor.cpp:122:13: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
   122 |             if (f > fMax()) continue; const float y = hzToY(f, a);
@@ -312,23 +329,6 @@ In file included from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce
 /home/runner/work/copycat-vst/copycat-vst/src/copycat/CopycatEditor.cpp:122:39: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
   122 |             if (f > fMax()) continue; const float y = hzToY(f, a);
       |                                       ^~~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘std::vector<float, std::allocator<float> > copycat::longTermSpectrum(const std::vector<float, std::allocator<float> >&, double, double*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:169:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  169 |     if (binHz) *binHz = sr / (double) NL; return s;
-      |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:169:43: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  169 |     if (binHz) *binHz = sr / (double) NL; return s;
-      |                                           ^~~~~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h: In function ‘void copycat::estimateCutoff(const std::vector<float, std::allocator<float> >&, double, double, Wave, double, double&, int&, double*)’:
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:186:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
-  186 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
-      |     ^~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:186:37: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  186 |     if (sorted.size() < 16) return; std::nth_element(sorted.begin(), sorted.begin() + (long)(sorted.size() / 5), sorted.end()); const double floorBin = sorted[sorted.size() / 5];
-      |                                     ^~~
-/home/runner/work/copycat-vst/copycat-vst/src/copycat/../core/CopycatAnalysis.h:212:79: warning: comparing floating-point with ‘==’ or ‘!=’ is unsafe [-Wfloat-equal]
-  212 |     if (n >= 3) { const double den = n * sxx - sx * sx; const double sl = den != 0 ? -(n * sxy - sx * sy) / den : 24; if (slopeDbOct) *slopeDbOct = sl; slope = sl >= 14 ? 24 : 12; }
-      |                                                                           ~~~~^~~~
 In file included from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors_headless/juce_audio_processors_headless.h:145,
                  from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.h:64,
                  from /home/runner/work/copycat-vst/copycat-vst/src/copycat/Copycat.h:4:
@@ -370,21 +370,21 @@ In file included from /home/runner/work/copycat-vst/copycat-vst/build/_deps/juce
 [ 70%] Linking CXX static library Copycat_artefacts/Release/libCopycat_SharedCode.a
 [ 70%] Built target Copycat
 [ 71%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
-[ 73%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
+[ 75%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX.cpp.o
 [ 75%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
 [ 76%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_AAX_utils.cpp.o
-[ 78%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
-[ 80%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
-[ 81%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
-[ 83%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
-[ 86%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
-[ 86%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
-[ 88%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
-[ 90%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
-[ 91%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
-[ 93%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
+[ 78%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
+[ 80%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_ARA.cpp.o
+[ 81%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
+[ 83%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_LV2.cpp.o
+[ 85%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
+[ 86%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
+[ 88%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
+[ 90%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Standalone.cpp.o
+[ 91%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_Unity.cpp.o
+[ 93%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST2.cpp.o
+[ 95%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
 [ 96%] Building CXX object CMakeFiles/Copycat_Standalone.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
-[ 96%] Building CXX object CMakeFiles/Copycat_VST3.dir/_deps/juce-src/modules/juce_audio_plugin_client/juce_audio_plugin_client_VST3.cpp.o
 [ 98%] Linking CXX executable Copycat_artefacts/Release/Standalone/Copycat
 [ 98%] Built target Copycat_Standalone
 [100%] Linking CXX shared module Copycat_artefacts/Release/VST3/Copycat.vst3/Contents/x86_64-linux/Copycat.so
